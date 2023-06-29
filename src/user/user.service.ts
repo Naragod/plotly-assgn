@@ -1,15 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { UpdateUserInput } from './dto/update-user.input';
-import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateUserInput } from './dto/create-user.input';
+import { ProductService } from 'src/product/product.service';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private userRepo: Repository<User>,
+    private readonly productService: ProductService,
+  ) {}
 
-  async create(user: User) {
-    return await this.userRepo.save(user);
+  async create(userInput: CreateUserInput) {
+    let { id, name, email, age, orderIds } = userInput;
+    const allProducts = await this.productService.findAll();
+    let orders = allProducts.filter((product) => orderIds.includes(product.id));
+
+    return await this.userRepo.save({ id, name, email, age, orders });
   }
 
   async findAll() {
@@ -21,14 +29,10 @@ export class UserService {
   }
 
   async findOne(id: string): Promise<User> {
-    let result =  await this.userRepo.find({
+    let result = await this.userRepo.find({
       relations: { orders: true },
       where: { id },
     });
-    return result.shift()
-  }
-
-  async update(id: string, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+    return result.shift();
   }
 }

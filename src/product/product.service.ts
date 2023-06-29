@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateProductInput } from './dto/update-product.input';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,9 +19,5 @@ export class ProductService {
 
   async findOne(id: string) {
     return await this.productRepo.findOneBy({ id });
-  }
-
-  update(id: string, updateProductInput: UpdateProductInput) {
-    return `This action updates a #${id} product`;
   }
 }

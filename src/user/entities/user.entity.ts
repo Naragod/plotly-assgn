@@ -1,12 +1,6 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Product } from 'src/product/entities/product.entity';
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -27,7 +21,7 @@ export class User {
   @Column()
   age: number;
 
-  @Field(type => [Product])
+  @Field((type) => [Product])
   @ManyToMany(() => Product)
   @JoinTable()
   orders: Product[];

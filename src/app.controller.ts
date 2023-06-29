@@ -38,16 +38,6 @@ export class AppController {
 
   @Post('user')
   async createUser(@Body() body): Promise<User> {
-    let { id, name, email, age, orderIds } = body;
-    const allProducts = await this.productService.findAll();
-    let orders = allProducts.filter((product) => orderIds.includes(product.id));
-
-    return await this.userService.create({
-      id,
-      name,
-      email,
-      age,
-      orders,
-    });
+    return await this.userService.create(body);
   }
 }

@@ -1,5 +1,5 @@
-import { ObjectType, InputType, Field } from "@nestjs/graphql";
-import { Entity } from "typeorm";
+import { ObjectType, InputType, Field } from '@nestjs/graphql';
+import { Entity } from 'typeorm';
 
 @ObjectType()
 @InputType()
@@ -13,6 +13,6 @@ export class CreateUserInput {
   email: string;
   @Field()
   age: number;
-  @Field(type => [String])
-  orderIds: string[]
+  @Field((type) => [String])
+  orderIds: string[];
 }

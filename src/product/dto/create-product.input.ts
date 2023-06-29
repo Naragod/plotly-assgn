@@ -1,6 +1,5 @@
-
-import { ObjectType, InputType, Field } from "@nestjs/graphql";
-import { Entity } from "typeorm";
+import { ObjectType, InputType, Field } from '@nestjs/graphql';
+import { Entity } from 'typeorm';
 
 @ObjectType()
 @InputType()

@@ -18,8 +18,8 @@ type Query {
 }
 
 type Mutation {
+  # update and creates
   createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 input CreateUserInput {
@@ -28,8 +28,4 @@ input CreateUserInput {
   email: String!
   age: Float!
   orderIds: [String!]!
-}
-
-input UpdateUserInput {
-  id: String!
 }
