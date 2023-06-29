@@ -20,7 +20,6 @@ type Query {
 type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
-  removeProduct(id: String!): String!
 }
 
 input CreateProductInput {

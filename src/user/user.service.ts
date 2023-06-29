@@ -13,18 +13,22 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userRepo.query("SELECT * FROM user;")
+    return await this.userRepo.find({
+      relations: {
+        orders: true,
+      },
+    });
   }
 
   async findOne(id: string): Promise<User> {
-    return await this.userRepo.findOneBy({ id });
+    let result =  await this.userRepo.find({
+      relations: { orders: true },
+      where: { id },
+    });
+    return result.shift()
   }
 
   async update(id: string, updateUserInput: UpdateUserInput) {
     return `This action updates a #${id} user`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} user`;
   }
 }

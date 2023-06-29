@@ -10,8 +10,7 @@ export class ProductResolver {
 
   @Mutation(returns => Product)
   async createProduct(@Args('product') product: CreateProductInput) {
-    let result = await this.productService.create(product);
-    return this.getProduct(result)
+    return await this.productService.create(product);
   }
 
   @Query(returns => [Product])
@@ -27,10 +26,5 @@ export class ProductResolver {
   @Mutation(returns => Product)
   updateProduct(@Args('updateProductInput') updateProductInput: UpdateProductInput) {
     return this.productService.update(updateProductInput.id, updateProductInput);
-  }
-
-  @Mutation(returns => String)
-  removeProduct(@Args('id') id: string) {
-    return this.productService.remove(id);
   }
 }

@@ -11,23 +11,18 @@ export class ProductService {
   ) {}
 
   async create(product: Product) {
-    const result = await this.productRepo.save(product);
-    return result.id;
+    return await this.productRepo.save(product);
   }
 
   async findAll() {
-    return await this.productRepo.query('SELECT * FROM product;');
+    return await this.productRepo.find();
   }
 
   async findOne(id: string) {
-    return await this.productRepo.findOneBy({id})
+    return await this.productRepo.findOneBy({ id });
   }
 
   update(id: string, updateProductInput: UpdateProductInput) {
     return `This action updates a #${id} product`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} product`;
   }
 }
