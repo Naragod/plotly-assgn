@@ -7,18 +7,18 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
-  @Mutation((returns) => Product)
+  @Mutation((_returns) => Product)
   async upsertProduct(@Args('createProductInput') product: UpsertProductInput) {
     return await this.productService.create(product);
   }
 
-  @Query((returns) => [Product])
-  getAllProducts() {
-    return this.productService.findAll();
+  @Query((_returns) => [Product])
+  async getAllProducts() {
+    return await this.productService.findAll();
   }
 
-  @Query((returns) => Product)
-  getProduct(@Args('id') id: string) {
-    return this.productService.findOne(id);
+  @Query((_returns) => Product)
+  async getProduct(@Args('id') id: string) {
+    return await this.productService.findOne(id);
   }
 }

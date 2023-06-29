@@ -7,17 +7,17 @@ import { User } from './entities/user.entity';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Mutation((returns) => User)
+  @Mutation((_returns) => User)
   async upsertUser(@Args('createUserInput') createUserInput: UpsertUserInput) {
     return await this.userService.create(createUserInput);
   }
 
-  @Query((returns) => [User])
+  @Query((_returns) => [User])
   async getAllUsers() {
     return await this.userService.findAll();
   }
 
-  @Query((returns) => User)
+  @Query((_returns) => User)
   async getUser(@Args('id') id: string) {
     return await this.userService.findOne(id);
   }
