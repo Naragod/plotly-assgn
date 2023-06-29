@@ -12,15 +12,15 @@ export class UserService {
     return await this.userRepo.save(user);
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    return await this.userRepo.query("SELECT * FROM user;")
   }
 
   async findOne(id: string): Promise<User> {
     return await this.userRepo.findOneBy({ id });
   }
 
-  update(id: string, updateUserInput: UpdateUserInput) {
+  async update(id: string, updateUserInput: UpdateUserInput) {
     return `This action updates a #${id} user`;
   }
 

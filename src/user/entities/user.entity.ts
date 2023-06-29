@@ -27,7 +27,7 @@ export class User {
   @Column()
   age: number;
 
-  @Field()
+  @Field(type => [Product])
   @ManyToMany(() => Product)
   @JoinTable()
   orders: Product[];

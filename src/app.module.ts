@@ -6,12 +6,17 @@ import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
-    UserModule,
     ProductModule,
-    GraphQLModule.forRoot({ driver: ApolloDriver }),
+    UserModule,
+    GraphQLModule.forRoot({
+      driver: ApolloDriver,
+      typePaths: ['./**/*.graphql'],
+    }),
+
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'plotlyDB',

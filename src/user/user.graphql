@@ -1,24 +1,36 @@
+type Product {
+  id: String!
+  name: String!
+  price: Float!
+}
+
 type User {
-  # Example field (placeholder)
-  exampleField: string
-}
-
-input CreateUserInput {
-  # Example field (placeholder)
-  exampleField: string
-}
-
-input UpdateUserInput {
-  id: string!
+  id: String!
+  name: String!
+  email: String!
+  age: Float!
+  orders: [Product!]!
 }
 
 type Query {
-  user: [User]!
-  user(id: string!): User
+  getAllUsers: [User!]!
+  getUser(id: String!): User!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: string!): User
+  removeUser(id: String!): String!
+}
+
+input CreateUserInput {
+  id: String!
+  name: String!
+  email: String!
+  age: Float!
+  orderIds: [String!]!
+}
+
+input UpdateUserInput {
+  id: String!
 }
