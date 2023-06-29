@@ -11,10 +11,10 @@ type Query {
 
 type Mutation {
   # update and creates
-  createProduct(createProductInput: CreateProductInput!): Product!
+  upsertProduct(createProductInput: UpsertProductInput!): Product!
 }
 
-input CreateProductInput {
+input UpsertProductInput {
   id: String!
   name: String!
   price: Float!

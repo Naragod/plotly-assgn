@@ -19,13 +19,13 @@ type Query {
 
 type Mutation {
   # update and creates
-  createUser(createUserInput: CreateUserInput!): User!
+  upsertUser(createUserInput: UpsertUserInput!): User!
 }
 
-input CreateUserInput {
+input UpsertUserInput {
   id: String!
   name: String!
   email: String!
-  age: Float!
+  age: Int!
   orderIds: [String!]!
 }

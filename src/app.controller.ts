@@ -32,12 +32,12 @@ export class AppController {
   }
 
   @Post('product')
-  async createProduct(@Body() body): Promise<Product> {
+  async upsertProduct(@Body() body): Promise<Product> {
     return await this.productService.create(body);
   }
 
   @Post('user')
-  async createUser(@Body() body): Promise<User> {
+  async upsertUser(@Body() body): Promise<User> {
     return await this.userService.create(body);
   }
 }

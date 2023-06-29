@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserInput } from './dto/create-user.input';
+import { UpsertUserInput } from './dto/create-user.input';
 import { ProductService } from '../product/product.service';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class UserService {
     private readonly productService: ProductService,
   ) {}
 
-  async create(userInput: CreateUserInput) {
+  async create(userInput: UpsertUserInput) {
     let { id, name, email, age, orderIds } = userInput;
     const allProducts = await this.productService.findAll();
     let orders = allProducts.filter((product) => orderIds.includes(product.id));
